@@ -1,0 +1,609 @@
+.container {
+  position: relative;
+  width: 100%;
+  background-color: #050505;
+}
+
+/* Height defines how much the user has to scroll through the animation
+   Set dynamically via inline style based on frame count
+   This creates the scroll distance without adding visual dead space */
+.scrollRange {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  background-color: transparent;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.stickyWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #050505;
+  z-index: 10;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+/* Canvas fills the sticky wrapper properly */
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh; /* Dynamic viewport height for mobile */
+  display: block;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+  contain: layout style paint;
+  touch-action: none;
+}
+
+/* Overlays container */
+.overlays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header Section */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.headerTitle {
+  font-size: 5rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+.headerSubtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: #d4af37;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+/* Base style for text sections */
+.section {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 450px;
+  color: #ffffff;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section Position variations */
+.intro {
+  top: 50%;
+  left: 8%;
+  transform: translateY(-40%);
+  align-items: flex-start;
+  text-align: left;
+  max-width: 500px;
+}
+
+.intro.visible {
+  transform: translateY(-50%);
+}
+
+.leftSide {
+  top: 50%;
+  left: 8%;
+  transform: translateY(-40%);
+  align-items: flex-start;
+}
+
+.leftSide.visible {
+  transform: translateY(-50%);
+}
+
+.rightSide {
+  top: 50%;
+  right: 8%;
+  transform: translateY(-40%);
+  align-items: flex-end;
+  text-align: right;
+}
+
+.rightSide.visible {
+  transform: translateY(-50%);
+}
+
+.outro {
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  text-align: center;
+  align-items: center;
+  max-width: 600px;
+}
+
+.outro.visible {
+  transform: translate(-50%, 0);
+  pointer-events: auto; /* Allow buttons to be clicked */
+}
+
+/* Text Stylings */
+.title {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  color: #d4af37;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+}
+
+.highlight {
+  color: #d4af37;
+  font-weight: 500;
+}
+
+/* Interactive elements */
+.ctaButton {
+  background: linear-gradient(135deg, #d4af37 0%, #aa841c 100%);
+  color: #000000;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+  pointer-events: auto;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, #f4d75e 0%, #d4af37 100%);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  z-index: 10;
+}
+
+.scrollIndicator.hidden {
+  opacity: 0;
+}
+
+.mouse {
+  width: 24px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  position: relative;
+  margin-top: 0.75rem;
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  background-color: #d4af37;
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollMouse 1.8s infinite ease-in-out;
+}
+
+@keyframes scrollMouse {
+  0% {
+    top: 6px;
+    opacity: 1;
+  }
+  50% {
+    top: 14px;
+    opacity: 0.3;
+  }
+  100% {
+    top: 6px;
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments - Tablet */
+@media (max-width: 1024px) {
+  .title {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    letter-spacing: 0.12em;
+  }
+  
+  .subtitle {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .leftSide, .rightSide {
+    left: 6%;
+    right: 6%;
+    max-width: 380px;
+    padding: 1.75rem;
+  }
+  
+  .ctaButton {
+    padding: 0.875rem 2.25rem;
+    font-size: 0.85rem;
+  }
+  
+  .scrollIndicator {
+    bottom: 2rem;
+    font-size: 0.7rem;
+  }
+
+  .headerTitle {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: 0.12em;
+  }
+  
+  .headerSubtitle {
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    letter-spacing: 0.25em;
+  }
+}
+
+/* Responsive adjustments - Mobile (426px - 768px) */
+@media (min-width: 426px) and (max-width: 768px) {
+  .stickyWrapper {
+    height: 100vh;
+    height: 100dvh;
+  }
+  
+  .canvas {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .title {
+    font-size: clamp(1.75rem, 5vw, 2.25rem);
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  
+  .subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.25em;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  
+  /* Luxury Glassmorphic Overlay Card for mobile readability */
+  .leftSide, .rightSide, .intro, .outro {
+    position: absolute !important;
+    left: 4% !important;
+    right: 4% !important;
+    width: auto !important;
+    max-width: 92% !important;
+    top: auto !important;
+    bottom: 8vh !important;
+    transform: translateY(20px) !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 1.25rem 1rem !important;
+    margin: 0 auto !important;
+    background: rgba(5, 5, 5, 0.8) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+    max-height: 60vh !important;
+    overflow-y: auto !important;
+  }
+  
+  .intro {
+    bottom: 10vh !important;
+  }
+
+  .visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  .ctaButton {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.8rem;
+    margin-top: 1.25rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .scrollIndicator {
+    bottom: 1.5rem;
+    font-size: 0.65rem;
+  }
+  
+  .mouse {
+    width: 20px;
+    height: 32px;
+  }
+  
+  .wheel {
+    width: 3px;
+    height: 6px;
+    top: 5px;
+  }
+
+  .headerTitle {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    letter-spacing: 0.1em;
+  }
+  
+  .headerSubtitle {
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    letter-spacing: 0.25em;
+  }
+}
+
+/* Extra small screens (320px) */
+@media (max-width: 320px) {
+  .stickyWrapper {
+    height: 100vh;
+    height: 100dvh;
+  }
+  
+  .canvas {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .title {
+    font-size: clamp(1.25rem, 4.5vw, 1.5rem);
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
+  }
+  
+  .subtitle {
+    font-size: 0.7rem;
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.2em;
+  }
+
+  .description {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    font-weight: 300;
+  }
+  
+  .leftSide, .rightSide, .intro, .outro {
+    left: 2% !important;
+    right: 2% !important;
+    max-width: 96% !important;
+    padding: 1rem 0.75rem !important;
+    border-radius: 8px !important;
+  }
+  
+  .ctaButton {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.7rem;
+    margin-top: 1rem;
+  }
+  
+  .scrollIndicator {
+    bottom: 0.8rem;
+    font-size: 0.6rem;
+  }
+
+  .headerTitle {
+    font-size: clamp(1.25rem, 4.5vw, 1.5rem);
+    letter-spacing: 0.08em;
+  }
+  
+  .headerSubtitle {
+    font-size: clamp(0.65rem, 2vw, 0.8rem);
+    letter-spacing: 0.2em;
+  }
+}
+
+/* Small mobile (375px) */
+@media (min-width: 321px) and (max-width: 375px) {
+  .stickyWrapper {
+    height: 100vh;
+    height: 100dvh;
+  }
+  
+  .canvas {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .title {
+    font-size: clamp(1.4rem, 4.8vw, 1.8rem);
+    letter-spacing: 0.09em;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    font-size: 0.75rem;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.22em;
+  }
+
+  .description {
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+  
+  .leftSide, .rightSide, .intro, .outro {
+    left: 2.5% !important;
+    right: 2.5% !important;
+    max-width: 95% !important;
+    padding: 1.1rem 0.875rem !important;
+    border-radius: 10px !important;
+  }
+  
+  .ctaButton {
+    padding: 0.75rem 1.3rem;
+    font-size: 0.72rem;
+    margin-top: 1.05rem;
+  }
+
+  .headerTitle {
+    font-size: clamp(1.4rem, 4.8vw, 1.8rem);
+    letter-spacing: 0.09em;
+  }
+  
+  .headerSubtitle {
+    font-size: clamp(0.7rem, 2.2vw, 0.85rem);
+    letter-spacing: 0.22em;
+  }
+}
+
+/* Medium mobile (425px) */
+@media (min-width: 376px) and (max-width: 425px) {
+  .stickyWrapper {
+    height: 100vh;
+    height: 100dvh;
+  }
+  
+  .canvas {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .title {
+    font-size: clamp(1.55rem, 5vw, 2rem);
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+  
+  .subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.24em;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .leftSide, .rightSide, .intro, .outro {
+    left: 3% !important;
+    right: 3% !important;
+    max-width: 94% !important;
+    padding: 1.2rem 1rem !important;
+    border-radius: 10px !important;
+  }
+  
+  .ctaButton {
+    padding: 0.8rem 1.4rem;
+    font-size: 0.75rem;
+    margin-top: 1.1rem;
+  }
+
+  .headerTitle {
+    font-size: clamp(1.55rem, 5vw, 2rem);
+    letter-spacing: 0.1em;
+  }
+  
+  .headerSubtitle {
+    font-size: clamp(0.75rem, 2.4vw, 0.95rem);
+    letter-spacing: 0.24em;
+  }
+}

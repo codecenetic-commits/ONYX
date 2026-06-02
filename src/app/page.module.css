@@ -1,0 +1,53 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #050505;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  flex-grow: 1;
+  position: relative;
+  z-index: 1;
+  padding-top: 80px;
+}
+
+/* Responsive padding adjustment */
+@media (max-width: 768px) {
+  .main {
+    padding-top: 64px;
+  }
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding-top: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding-top: 52px;
+  }
+}
+
+/* Legacy footer - now using Footer component */
+.footerLegacy {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background-color: #050505;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: none;
+}
+
+.footerLegacy p {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.1em;
+}

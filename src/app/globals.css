@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #050505;
+  --color-brand-gold: #d4af37;
+  --color-brand-gold-hover: #f4d75e;
+  --color-brand-card: rgba(16, 16, 16, 0.7);
+  --color-brand-border: rgba(255, 255, 255, 0.08);
+  
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-brand-dark);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    color-scheme: dark;
+    overflow-x: hidden;
+    width: 100%;
+    overflow: clip;
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: var(--color-brand-dark);
+    color: #ffffff;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+  }
+
+  /* Accessibility: Improve focus visibility */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-gold);
+    outline-offset: 2px;
+  }
+
+  /* Accessibility: High contrast mode support */
+  @media (prefers-contrast: more) {
+    :root {
+      --color-brand-gold: #ffdf00;
+    }
+    
+    .glass-panel {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+/* Custom Scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 10, 10, 0.9);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.25);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.5);
+}
+
+/* Custom premium glow transitions */
+.glow-text {
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #ffffff 30%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom glassmorphism card style */
+.glass-panel {
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive text utilities */
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Prevent layout shift */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Reduce motion on touch devices */
+  .glass-panel {
+    transition-duration: 0.2s;
+  }
+}
+
+/* Performance: GPU acceleration for animations */
+.animate-gpu {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Accessibility: Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-brand-gold);
+  color: var(--color-brand-dark);
+  padding: 8px;
+  z-index: 100;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+/* Accessibility: Visible focus for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-brand-gold);
+  outline-offset: 2px;
+}
+
+/* Performance: Lazy loading placeholder */
+.lazy-img {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.05) 25%, rgba(212, 175, 55, 0.1) 50%, rgba(212, 175, 55, 0.05) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Performance: Image optimization class */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Accessibility: Large touch targets */
+@media (hover: none) and (pointer: coarse) {
+  a, button, input[type="button"], input[type="submit"] {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px;
+  }
+}
