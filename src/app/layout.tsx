@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -20,6 +20,20 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://onyx-watches.com";
 const siteName = "ONYX";
 const siteDescription = "Experience the precision and craftsmanship of the Onyx mechanical watch through an interactive scroll showcase.";
 
+
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#d4af37" },
+    { media: "(prefers-color-scheme: dark)", color: "#d4af37" },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -40,15 +54,6 @@ export const metadata: Metadata = {
   authors: [{ name: "ONYX" }],
   creator: "ONYX",
   publisher: "ONYX",
-  
-  // Viewport configuration for mobile optimization
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-    viewportFit: "cover",
-  },
 
   // Open Graph (Social Media)
   openGraph: {

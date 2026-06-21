@@ -116,7 +116,7 @@ ONYX is a luxury watch brand landing page showcasing mechanical timepieces throu
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/onyx-watches.git
+   git clone https://github.com/onyx-watches/onyx-watches.git
    cd onyx-watches
    ```
 

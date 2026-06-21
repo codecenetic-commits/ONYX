@@ -4,11 +4,11 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "env": {
-    "NEXT_PUBLIC_SITE_URL": "@site_url",
+    "NEXT_PUBLIC_SITE_URL": "https://onyx-watches.com",
     "NEXT_PUBLIC_SITE_NAME": "ONYX",
     "NEXT_PUBLIC_ENABLE_CSP": "true"
   },
-  "envPrefix": "NEXT_PUBLIC_",
+
   "functions": {
     "api/**": {
       "maxDuration": 60

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Compass, Eye, ShieldCheck, Heart } from "lucide-react";
+import { Compass, Eye } from "lucide-react";
 import OptimizedImage from "@/components/OptimizedImage";
 
 const categories = ["All", "Titanium", "Gold", "Ceramic"];

@@ -150,7 +150,7 @@ export default function FAQ() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="glass-panel rounded-lg overflow-hidden"
         >
-          {faqs.map((faq, index) => (
+          {faqs.map((faq) => (
             <FAQItem
               key={faq.id}
               item={faq}

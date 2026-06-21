@@ -37,6 +37,19 @@ Welcome to the ONYX Luxury Watch website production documentation. This index wi
 - Folder structure
 - Troubleshooting guide
 
+**[LICENSE](./LICENSE)** - MIT License
+- Legal terms and permissions
+- Open-source licensing
+
+**[CONTRIBUTING.md](./CONTRIBUTING.md)** - Contribution Guidelines
+- How to contribute to the project
+- Styleguides and standards
+- Reporting bugs and feature requests
+
+**[SECURITY.md](./SECURITY.md)** - Security Policy
+- Supported versions
+- How to report vulnerabilities
+
 **[PRODUCTION_CHECKLIST.md](./PRODUCTION_CHECKLIST.md)** - Launch Readiness
 - Complete finalization checklist
 - Phase-by-phase completion status

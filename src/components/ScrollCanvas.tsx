@@ -406,7 +406,7 @@ export default function ScrollCanvas({ onProgress, onLoaded, isLoaded }: ScrollC
         }
 
         // Update active overlay section index (avoiding high-frequency React renders)
-        let activeSec = -1;
+        const activeSec = -1;
 
         // Fade out the header after scrolling 20%
         if (progress >= 0.2) {
@@ -445,12 +445,6 @@ export default function ScrollCanvas({ onProgress, onLoaded, isLoaded }: ScrollC
     };
   }, [isLoaded]);
 
-  // Render text section classes
-  const getSectionClass = (secIndex: number, defaultPosClass: string) => {
-    return `${styles.section} ${defaultPosClass} ${
-      activeSection === secIndex ? styles.visible : ""
-    }`;
-  };
 
   return (
     <div 

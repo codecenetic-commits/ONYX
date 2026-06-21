@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ArrowLeft, ArrowRight, Quote, Star } from "lucide-react";
 
 const reviews = [
@@ -52,7 +52,7 @@ export default function Testimonials() {
     return () => clearInterval(timer);
   }, []);
 
-  const slideVariants = {
+  const slideVariants: Variants = {
     enter: (dir: number) => ({
       x: dir > 0 ? 100 : -100,
       opacity: 0,
@@ -75,16 +75,6 @@ export default function Testimonials() {
     }),
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
 
 
 
@@ -177,7 +167,7 @@ export default function Testimonials() {
 
                 {/* Quote copy */}
                 <p className="text-lg sm:text-xl md:text-2xl font-light leading-relaxed italic text-white/95 mb-6 sm:mb-8 font-sans">
-                  "{reviews[index].quote}"
+                  &quot;{reviews[index].quote}&quot;
                 </p>
               </div>
 

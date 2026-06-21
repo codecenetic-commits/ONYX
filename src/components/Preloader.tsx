@@ -19,6 +19,7 @@ export default function Preloader({ progress, isLoading }: PreloaderProps) {
       }, 1000);
       return () => clearTimeout(timer);
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShouldRender(true);
     }
   }, [isLoading]);

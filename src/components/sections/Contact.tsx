@@ -164,7 +164,7 @@ export default function Contact() {
             Contact Our Concierge
           </h2>
           <p className="text-sm sm:text-base text-white/60 max-w-2xl mx-auto px-2">
-            Reach out to our luxury sales and support team. We're available for bespoke consultations and exclusive previews.
+            Reach out to our luxury sales and support team. We&apos;re available for bespoke consultations and exclusive previews.
           </p>
         </motion.div>
 
@@ -315,7 +315,7 @@ export default function Contact() {
                   exit={{ opacity: 0 }}
                   className="p-3 sm:p-4 bg-emerald-950/30 border border-emerald-500/50 rounded-lg text-emerald-300 text-xs sm:text-sm"
                 >
-                  ✓ Thank you! We'll be in touch within 24 hours.
+                  ✓ Thank you! We&apos;ll be in touch within 24 hours.
                 </motion.div>
               )}
 
